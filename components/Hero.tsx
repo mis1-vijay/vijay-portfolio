@@ -30,7 +30,7 @@ export default function Hero() {
             {/* Grayscale removed, permanent color with violet glow */}
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full overflow-hidden z-10 border-2 border-violet-500/30 shadow-[0_0_20px_rgba(139,92,246,0.3)] cursor-pointer">
               <img 
-                src="/IMG_20260101_210332210_HDR.jpg" 
+                src="/profile.jpg" 
                 alt="Vijay Jadhav" 
                 className="w-full h-full object-cover transition-all duration-500" 
               />
