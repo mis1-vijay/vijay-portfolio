@@ -1,71 +1,70 @@
 "use client";
 import { motion } from "framer-motion";
 import { portfolioData } from "../data";
-import { Download, ArrowRight, Terminal } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
 
-export default function Hero() {
-  const { name, role, summary } = portfolioData.personal;
-
+export default function Experience() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#090713] text-slate-100 overflow-hidden px-6 lg:px-16 pt-20">
-      
-      {/* Background Grids & Glows */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1b33_1px,transparent_1px),linear-gradient(to_bottom,#1f1b33_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"></div>
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center z-10 w-full">
+    <section id="experience" className="py-24 bg-[#090713] text-slate-200 px-6 lg:px-16 border-t border-white/5 overflow-hidden">
+      <div className="max-w-5xl mx-auto">
         
-        {/* Left Side: Floating Photo */}
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="relative flex justify-center lg:justify-start order-1">
-          <div className="relative w-72 h-72 md:w-[420px] md:h-[420px]">
-            
-            {/* 1. VISIBLE ROTATING RING */}
-            <motion.div 
-              animate={{ rotate: 360 }} 
-              transition={{ repeat: Infinity, duration: 15, ease: "linear" }} 
-              className="absolute inset-0 rounded-full border-2 md:border-4 border-violet-400/80 border-dashed shadow-[0_0_30px_rgba(139,92,246,0.3)] z-0"
-            ></motion.div>
-            
-            {/* Glowing Core */}
-            <div className="absolute inset-2 md:inset-4 rounded-full bg-gradient-to-tr from-violet-500/40 to-fuchsia-600/40 blur-[5px] opacity-60 z-0"></div>
-            
-            {/* Inner Image Container (Gap adjusted so border is fully visible outside) */}
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full p-2 flex items-center justify-center overflow-hidden z-10 border border-white/10 cursor-pointer shadow-xl">
-              <span className="text-violet-400/70 font-mono text-sm tracking-widest animate-pulse">[ DROP_PHOTO_HERE ]</span>
-            </motion.div>
-            
-          </div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 md:mb-16 text-center md:text-left">
+          <h2 className="text-4xl md:text-5xl font-black mb-4">
+            <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">WORK</span> EXPERIENCE
+          </h2>
+          <div className="w-20 h-1.5 bg-violet-500 rounded-full mx-auto md:mx-0"></div>
         </motion.div>
 
-        {/* Right Side: Text & Content */}
-        <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.3 }} className="text-left space-y-8 order-2 lg:pl-6">
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter">
-              <span className="text-slate-300">HI, I'M</span><br />
-              <motion.span initial={{ backgroundPosition: "0% 50%" }} animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="bg-[length:200%_auto] bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent drop-shadow-lg block">
-                {name.toUpperCase()}
-              </motion.span>
-            </h1>
-            
-            <motion.div whileHover={{ x: 10 }} className="flex items-center gap-3 text-xl md:text-2xl font-mono text-slate-400 border-l-4 border-violet-500 pl-4 mt-6 w-fit cursor-default">
-              <Terminal size={24} className="text-violet-400" />
-              <span>{role}</span>
-            </motion.div>
-          </div>
+        <div className="relative before:absolute before:inset-0 before:left-[18px] md:before:left-[22px] before:h-full before:w-1 before:bg-gradient-to-b before:from-violet-500 before:via-fuchsia-500/50 before:to-transparent">
+          
+          {portfolioData.experience.map((exp, index) => (
+            <div key={index} className="relative flex items-start group mb-12 last:mb-0 pl-14 md:pl-20">
+              
+              {/* Bouncing Glowing Icon */}
+              <motion.div 
+                initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2, type: "spring", stiffness: 200 }}
+                className="absolute left-0 md:left-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-[#090713] bg-violet-900 text-violet-300 shadow-[0_0_15px_rgba(139,92,246,0.5)] z-10 mt-1"
+              >
+                <Briefcase className="w-4 h-4 md:w-5 md:h-5" />
+              </motion.div>
 
-          <p className="text-lg text-slate-400 leading-relaxed bg-[#120f22]/60 p-6 rounded-2xl border border-white/5 backdrop-blur-md">
-            {summary}
-          </p>
+              {/* Dynamic Animated Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: 50 }} 
+                whileInView={{ opacity: 1, x: 0 }} 
+                viewport={{ once: true, margin: "-50px" }} 
+                transition={{ duration: 0.6, delay: index * 0.2, type: "spring", bounce: 0.4 }} 
+                whileHover={{ y: -5, boxShadow: "0 20px 40px -10px rgba(139,92,246,0.15)", borderColor: "rgba(139,92,246,0.5)" }}
+                className="w-full bg-[#120f22]/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10 shadow-lg transition-all relative overflow-hidden"
+              >
+                
+                {/* Bigger Text for Role & Date */}
+                <div className="flex flex-col xl:flex-row xl:items-center justify-between mb-4 gap-4 relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                    {exp.role}
+                  </h3>
+                  <span className="flex items-center gap-2 text-sm md:text-base font-mono text-violet-300 bg-violet-500/10 px-4 py-2 rounded-full border border-violet-500/20 w-fit font-bold">
+                    <Calendar size={16} /> {exp.duration}
+                  </span>
+                </div>
+                
+                {/* Bigger Text for Company */}
+                <h4 className="text-lg md:text-xl font-bold text-fuchsia-400 mb-6 relative z-10">{exp.company}</h4>
+                
+                {/* Bigger Text for Bullet Points */}
+                <ul className="space-y-4 md:space-y-5 relative z-10">
+                  {exp.points.map((point, i) => (
+                    <motion.li key={i} whileHover={{ x: 5 }} className="flex items-start gap-4 text-slate-300 leading-relaxed text-base md:text-lg transition-transform">
+                      <CheckCircle2 size={22} className="text-violet-500 shrink-0 mt-0.5" />
+                      <span>{point}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          ))}
 
-          <div className="flex flex-wrap items-center gap-6 pt-6">
-            <motion.a whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139,92,246,0.4)" }} whileTap={{ scale: 0.95 }} href="#projects" className="group relative flex items-center gap-2 bg-violet-600 text-white px-8 py-4 rounded-xl font-bold transition-all">
-              Explore Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.05, backgroundColor: "rgba(139,92,246,0.1)" }} whileTap={{ scale: 0.95 }} href="/VIJAY_RESUME_2026.pdf" target="_blank" className="flex items-center gap-2 border border-white/10 px-8 py-4 rounded-xl font-bold transition-all text-slate-300 bg-[#120f22]">
-              <Download size={18} /> Check Resume
-            </motion.a>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
