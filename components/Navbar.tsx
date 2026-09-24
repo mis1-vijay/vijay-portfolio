@@ -1,72 +1,47 @@
 "use client";
 import { motion } from "framer-motion";
-import { portfolioData } from "../data";
-import { Download, ArrowRight, Terminal } from "lucide-react";
 
-export default function Hero() {
-  const { name, role, summary } = portfolioData.personal;
-
+export default function Navbar() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#090713] text-slate-100 overflow-hidden px-6 lg:px-16 pt-20">
-      
-      {/* Background Grids & Glows */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f1b33_1px,transparent_1px),linear-gradient(to_bottom,#1f1b33_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"></div>
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center z-10 w-full">
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 w-full z-50 bg-[#090713]/80 backdrop-blur-md border-b border-white/5"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 flex items-center justify-between h-20">
         
-        {/* Left Side: Floating Photo */}
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="relative flex justify-center lg:justify-start order-1">
-          <div className="relative w-72 h-72 md:w-[420px] md:h-[420px]">
-            
-            {/* 1. VISIBLE ROTATING RING */}
-            <motion.div 
-              animate={{ rotate: 360 }} 
-              transition={{ repeat: Infinity, duration: 15, ease: "linear" }} 
-              className="absolute inset-0 rounded-full border-2 md:border-4 border-violet-400/80 border-dashed shadow-[0_0_30px_rgba(139,92,246,0.3)] z-0"
-            ></motion.div>
-            
-            {/* Glowing Core */}
-            <div className="absolute inset-2 md:inset-4 rounded-full bg-gradient-to-tr from-violet-500/40 to-fuchsia-600/40 blur-[5px] opacity-60 z-0"></div>
-            
-            {/* Inner Image Container (Gap adjusted so border is fully visible outside) */}
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full p-2 flex items-center justify-center overflow-hidden z-10 border border-white/10 cursor-pointer shadow-xl">
-              <span className="text-violet-400/70 font-mono text-sm tracking-widest animate-pulse">[ DROP_PHOTO_HERE ]</span>
-            </motion.div>
-            
-          </div>
-        </motion.div>
+        {/* New Minimal Logo */}
+        <a href="#" className="flex items-center text-white font-black text-2xl tracking-tighter hover:scale-105 transition-transform">
+          <span className="text-violet-500 mr-1">&lt;</span>
+          VJ
+          <span className="text-violet-500 ml-1">/&gt;</span>
+        </a>
+        
+        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+          <a href="#skills" className="hover:text-violet-300 transition-colors">Skills</a>
+          <a href="#experience" className="hover:text-violet-300 transition-colors">Experience</a>
+          <a href="#projects" className="hover:text-violet-300 transition-colors">Projects</a>
+        </div>
 
-        {/* Right Side: Text & Content */}
-        <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.3 }} className="text-left space-y-8 order-2 lg:pl-6">
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter">
-              <span className="text-slate-300">HI, I'M</span><br />
-              <motion.span initial={{ backgroundPosition: "0% 50%" }} animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="bg-[length:200%_auto] bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent drop-shadow-lg block">
-                {name.toUpperCase()}
-              </motion.span>
-            </h1>
-            
-            <motion.div whileHover={{ x: 10 }} className="flex items-center gap-3 text-xl md:text-2xl font-mono text-slate-400 border-l-4 border-violet-500 pl-4 mt-6 w-fit cursor-default">
-              <Terminal size={24} className="text-violet-400" />
-              <span>{role}</span>
-            </motion.div>
-          </div>
-
-          <p className="text-lg text-slate-400 leading-relaxed bg-[#120f22]/60 p-6 rounded-2xl border border-white/5 backdrop-blur-md">
-            {summary}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-6 pt-6">
-            <motion.a whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139,92,246,0.4)" }} whileTap={{ scale: 0.95 }} href="#projects" className="group relative flex items-center gap-2 bg-violet-600 text-white px-8 py-4 rounded-xl font-bold transition-all">
-              Explore Projects <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.05, backgroundColor: "rgba(139,92,246,0.1)" }} whileTap={{ scale: 0.95 }} href="/VIJAY_RESUME_2026.pdf" target="_blank" className="flex items-center gap-2 border border-white/10 px-8 py-4 rounded-xl font-bold transition-all text-slate-300 bg-[#120f22]">
-              <Download size={18} /> Check Resume
-            </motion.a>
-          </div>
-        </motion.div>
+        {/* GitHub & LinkedIn Native SVG Icons */}
+        <div className="flex items-center gap-5 text-slate-300">
+          <a href="#" target="_blank" rel="noreferrer" className="hover:text-violet-400 hover:scale-110 transition-all" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+              <path d="M9 18c-4.51 2-5-2-7-2"/>
+            </svg>
+          </a>
+          
+          <a href="#" target="_blank" rel="noreferrer" className="hover:text-violet-400 hover:scale-110 transition-all" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
       </div>
-    </section>
+    </motion.nav>
   );
 }

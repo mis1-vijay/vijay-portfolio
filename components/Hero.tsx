@@ -19,20 +19,18 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="relative flex justify-center lg:justify-start order-1">
           <div className="relative w-64 h-64 md:w-[420px] md:h-[420px]">
             
-            {/* 1. VISIBLE ROTATING RING */}
             <motion.div 
               animate={{ rotate: 360 }} 
               transition={{ repeat: Infinity, duration: 15, ease: "linear" }} 
               className="absolute inset-0 rounded-full border-2 md:border-4 border-violet-400/80 border-dashed shadow-[0_0_30px_rgba(139,92,246,0.3)] z-0"
             ></motion.div>
             
-            {/* Glowing Core */}
             <div className="absolute inset-2 md:inset-4 rounded-full bg-gradient-to-tr from-violet-500/40 to-fuchsia-600/40 blur-[5px] opacity-60 z-0"></div>
             
-            {/* Inner Image Container - PHOTO REPLACED HERE */}
+            {/* Yahan teri photo add kar di gayi hai */}
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full overflow-hidden z-10 border border-white/10 shadow-xl">
               <img 
-                src="/IMG_20260101_210332210_HDR.jpg" 
+                src="/profile.jpg" 
                 alt="Vijay Jadhav" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
               />
@@ -61,7 +59,7 @@ export default function Hero() {
             {summary}
           </p>
 
-          {/* FIX: Buttons Side-by-Side on Mobile */}
+          {/* Yahan buttons mobile par side-by-side ho gaye hain */}
           <div className="flex flex-row items-center gap-3 pt-4 w-full md:w-auto">
             <motion.a 
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139,92,246,0.4)" }} 
