@@ -15,8 +15,8 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center z-10 w-full">
         
-        {/* Left Side: Floating Photo */}
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="relative flex justify-center lg:justify-start order-1">
+        {/* Safe mobile initial animation (y: 20 instead of x/scale bugs) */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, type: "spring", bounce: 0.4 }} className="relative flex justify-center lg:justify-start order-1">
           <div className="relative w-64 h-64 md:w-[420px] md:h-[420px]">
             
             <motion.div 
@@ -27,20 +27,20 @@ export default function Hero() {
             
             <div className="absolute inset-2 md:inset-4 rounded-full bg-gradient-to-tr from-violet-500/40 to-fuchsia-600/40 blur-[5px] opacity-60 z-0"></div>
             
-            {/* Yahan teri photo add kar di gayi hai */}
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full overflow-hidden z-10 border border-white/10 shadow-xl">
+            {/* Grayscale removed, permanent color with violet glow */}
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="absolute inset-[10px] md:inset-[16px] bg-[#090713] rounded-full overflow-hidden z-10 border-2 border-violet-500/30 shadow-[0_0_20px_rgba(139,92,246,0.3)] cursor-pointer">
               <img 
-                src="/profile.jpg" 
+                src="/IMG_20260101_210332210_HDR.jpg" 
                 alt="Vijay Jadhav" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                className="w-full h-full object-cover transition-all duration-500" 
               />
             </motion.div>
             
           </div>
         </motion.div>
 
-        {/* Right Side: Text & Content */}
-        <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.3 }} className="text-left space-y-6 md:space-y-8 order-2 lg:pl-6 w-full">
+        {/* Changed 'x: 50' to 'y: 30' to fix horizontal scroll issue on mobile */}
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, type: "spring", bounce: 0.3 }} className="text-left space-y-6 md:space-y-8 order-2 lg:pl-6 w-full">
           <div className="space-y-3 md:space-y-4">
             <h1 className="text-4xl md:text-7xl font-black tracking-tighter">
               <span className="text-slate-300">HI, I'M</span><br />
@@ -59,13 +59,12 @@ export default function Hero() {
             {summary}
           </p>
 
-          {/* Yahan buttons mobile par side-by-side ho gaye hain */}
           <div className="flex flex-row items-center gap-3 pt-4 w-full md:w-auto">
             <motion.a 
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(139,92,246,0.4)" }} 
               whileTap={{ scale: 0.95 }} 
               href="#projects" 
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-violet-600 text-white px-2 py-3.5 md:px-8 md:py-4 rounded-xl text-sm md:text-base font-bold transition-all whitespace-nowrap"
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-violet-600 text-white px-2 py-3.5 md:px-8 md:py-4 rounded-xl text-sm md:text-base font-bold transition-all whitespace-nowrap shadow-[0_0_15px_rgba(139,92,246,0.3)]"
             >
               Projects <ArrowRight size={16} />
             </motion.a>
