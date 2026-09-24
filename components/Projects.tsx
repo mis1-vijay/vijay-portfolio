@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data";
-import { FolderGit2, ExternalLink, Sparkles, X, Image as ImageIcon } from "lucide-react";
+import { FolderGit2, ExternalLink, Sparkles, X, Image as ImageIcon, ArrowUpRight } from "lucide-react";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
@@ -34,12 +34,17 @@ export default function Projects() {
               transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }} 
               whileHover={{ y: -10, scale: 1.02, boxShadow: "0 20px 40px -10px rgba(139,92,246,0.15)" }}
               onClick={() => setSelectedProject(project)}
-              className="group flex flex-col bg-[#120f22] p-8 rounded-2xl border border-white/5 hover:border-violet-500/50 transition-all cursor-pointer h-full"
+              className="group flex flex-col bg-[#120f22] p-8 rounded-2xl border border-white/5 hover:border-violet-500/50 transition-all cursor-pointer h-full relative"
             >
               <div className="flex justify-between items-start mb-6">
                 <motion.div whileHover={{ rotate: 15 }} transition={{ type: "spring" }}>
                   <FolderGit2 size={40} className="text-violet-400/80" />
                 </motion.div>
+                
+                {/* Highlighted Open Button */}
+                <span className="flex items-center gap-1 text-xs font-bold text-violet-300 bg-violet-500/20 px-3 py-1.5 rounded-full group-hover:bg-violet-500/40 group-hover:text-white transition-all shadow-[0_0_10px_rgba(139,92,246,0.1)]">
+                  Open <ArrowUpRight size={14} />
+                </span>
               </div>
               
               <h3 className="text-2xl font-bold text-slate-100 mb-2 group-hover:text-violet-300 transition-colors">
